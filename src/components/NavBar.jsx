@@ -9,7 +9,7 @@ export default function Navbar() {
             <Link to="/submit-post" className="hover:text-primary flex items-center gap-1"><PiNotePencilFill /> Write</Link>
             <Link to="/signin" className="hover:text-primary">Signin</Link>
             <Link to="/get-started">
-                <button className="btn btn-secondary text-primary rounded-full px-4">Get started</button>
+                <button className="btn btn-secondary text-white rounded-full px-4">Get started</button>
             </Link>
 
         </>
@@ -19,9 +19,10 @@ export default function Navbar() {
         <div className="navbar shadow-md">
             <div className="navbar bg-base-100 px-4 w-7xl mx-auto">
                 <div className="flex-1">
-                    <Link to="/" className="flex items-center text-xl font-bold text-neutral">
-                        <img className="w-12" src="/logo.png" alt="" /> Tech Blog
-                    </Link>
+                    <div className="flex items-center text-xl font-bold text-neutral">
+                        <Link><img className="w-12" src="/logo.png" alt="" /> </Link>
+                        Tech Blog
+                    </div>
                 </div>
 
                 <div className="hidden lg:flex gap-6 items-center text-sm">

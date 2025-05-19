@@ -40,7 +40,7 @@ const Blogs = () => {
                         </figure>
                         <div className="card-body">
                             <h3 className="card-title text-xl">{blog.title}</h3>
-                            <p className="text-sm text-neutral-content">{blog.description}</p>
+                            <p className="text-sm text-primary">{blog.meta_description}</p>
                             <div className="mt-4 text-sm text-gray-500">By {blog.author}</div>
                             <div className="mt-2">
                                 <Link to={`/blog-details/${blog._id}`} className="text-secondary font-medium">

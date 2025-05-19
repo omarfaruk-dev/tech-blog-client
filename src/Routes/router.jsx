@@ -4,6 +4,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import ErrorPage from "../pages/ErrorPage";
 import Blogs from "../pages/blogs/Blogs";
 import BlogDetails from "../pages/blogs/BlogDetails";
+import SubmitPost from "../pages/blogs/SubmitPost";
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 Component: HomeLayout,
+            },
+            {
+                path: 'submit-post',
+                element: <SubmitPost/>
             },
             {
                 path: '/blogs',  
