@@ -1,12 +1,12 @@
 import { Link } from "react-router";
-
-export default function Hero() {
+import heroImg from '../assets/blog.svg'
+const Hero = () => {
   return (
     <div className="hero min-h-[calc(100vh-149px)] bg-base-100 px-4 lg:px-24 py-12">
       <div className="hero-content max-w-5xl mx-auto flex-col lg:flex-row-reverse gap-12">
-        {/* Illustrative Side (Right on large screens) */}
+        {/* image*/}
         <div className="flex-1 flex flex-col items-center lg:items-end gap-6">
-            <img  src="hero.webp" alt="" />
+            <img  src={heroImg} alt="" />
         </div>
 
         {/* Text Side (Left on large screens) */}
@@ -26,3 +26,5 @@ export default function Hero() {
     </div>
   );
 }
+
+export default Hero;
