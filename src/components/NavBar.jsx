@@ -8,12 +8,11 @@ export default function Navbar() {
             <NavLink to="/blogs" className="hover:text-primary flex items-center gap-1"><FaBookReader /> Read</NavLink>
             <NavLink to="/submit-post" className="hover:text-primary flex items-center gap-1"><PiNotePencilFill /> Write</NavLink>
             <NavLink to="/signin" className="hover:text-primary">Signin</NavLink>
-            <NavLink to="/get-started">
+            <NavLink to="/signup">
                 <button className="btn btn-secondary text-white rounded-full px-4">Get started</button>
             </NavLink>
 
         </>
-
 
     return (
         <div className="navbar border-b border-secondary">

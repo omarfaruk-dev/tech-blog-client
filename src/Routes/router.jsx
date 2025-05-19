@@ -6,6 +6,7 @@ import Blogs from "../pages/blogs/Blogs";
 import BlogDetails from "../pages/blogs/BlogDetails";
 import SubmitPost from "../pages/blogs/SubmitPost";
 import SignIn from "../pages/users/SignIn";
+import SignUp from "../pages/users/SignUp";
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path: '/signin',
                 Component: SignIn,
+            },
+            {
+                path: '/signup',
+                Component: SignUp,
             },
             {
                 path: 'submit-post',

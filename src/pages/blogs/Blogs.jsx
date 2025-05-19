@@ -32,6 +32,15 @@ const Blogs = () => {
     return (
         <div className="max-w-7xl mx-auto px-4 py-12">
             <h2 className="text-3xl font-bold mb-8 text-center">Latest Blogs</h2>
+            {/* Search Input */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+                <input
+                    type="text"
+                    placeholder="Search blogs..."
+                    className="input input-bordered w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-secondary"
+                />
+                <button className="btn btn-secondary text-white rounded-3xl w-full sm:w-auto">Search</button>
+            </div>
             <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {blogsData.map((blog) => (
                     <div key={blog.id} className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
