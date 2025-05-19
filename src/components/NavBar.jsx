@@ -17,7 +17,7 @@ export default function Navbar() {
 
     return (
         <div className="navbar shadow-md">
-            <div className="navbar bg-base-100 px-4 w-5xl mx-auto">
+            <div className="navbar bg-base-100 px-4 w-7xl mx-auto">
                 <div className="flex-1">
                     <Link to="/" className="flex items-center text-xl font-bold text-neutral">
                         <img className="w-12" src="/logo.png" alt="" /> Tech Blog
@@ -26,13 +26,6 @@ export default function Navbar() {
 
                 <div className="hidden lg:flex gap-6 items-center text-sm">
                     {links}
-                    {/* <Link to="/our-story" className="hover:text-primary">Our story</Link>
-                    <Link to="/membership" className="hover:text-primary">Membership</Link>
-                    <Link to="/write" className="hover:text-primary">Write</Link>
-                    <Link to="/signin" className="hover:text-primary">Sign in</Link>
-                    <Link to="/get-started">
-                        <button className="btn btn-primary rounded-full px-4">Get started</button>
-                    </Link> */}
                 </div>
 
                 {/* Mobile menu */}
