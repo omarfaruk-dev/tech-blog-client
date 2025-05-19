@@ -7,6 +7,7 @@ import BlogDetails from "../pages/blogs/BlogDetails";
 import SubmitPost from "../pages/blogs/SubmitPost";
 import SignIn from "../pages/users/SignIn";
 import SignUp from "../pages/users/SignUp";
+import Spinner from "../components/ui/Spinner";
 
 
 const router = createBrowserRouter([
@@ -32,7 +33,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/blogs',  
-                loader: () => fetch('http://localhost:3000/blogs'),
+                hydrateFallbackElement: <Spinner/>,
+                // loader: () => fetch('http://localhost:3000/blogs'),
                 element: <Blogs/>         
             },
             {
