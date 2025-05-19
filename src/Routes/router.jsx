@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import HomeLayout from "../layouts/HomeLayout";
 import ErrorPage from "../pages/ErrorPage";
+import Blogs from "../pages/blogs/Blogs";
+import BlogDetails from "../pages/blogs/BlogDetails";
 
 
 const router = createBrowserRouter([
@@ -14,8 +16,14 @@ const router = createBrowserRouter([
                 Component: HomeLayout,
             },
             {
-                path: '/contact',
-                element: <h2>Contact Page</h2>            
+                path: '/blogs',  
+                loader: () => fetch('http://localhost:3000/blogs'),
+                element: <Blogs/>         
+            },
+            {
+                path: 'blog-details/:id',
+                loader: ({params}) => fetch(`http://localhost:3000/blogs/${params.id}`),
+                element: <BlogDetails/>
             },
             {
                 path: '*',
