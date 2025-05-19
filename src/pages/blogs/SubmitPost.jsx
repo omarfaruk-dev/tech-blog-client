@@ -102,7 +102,7 @@ const SubmitPost = () => {
                
 
                 {/* Submit Button */}
-                <button className="btn btn-secondary w-full rounded-full">
+                <button className="btn btn-secondary text-white w-full rounded-full">
                     Submit Post
                 </button>
             </form>

@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Blogs from "../pages/blogs/Blogs";
 import BlogDetails from "../pages/blogs/BlogDetails";
 import SubmitPost from "../pages/blogs/SubmitPost";
+import SignIn from "../pages/users/SignIn";
 
 
 const router = createBrowserRouter([
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 Component: HomeLayout,
+            },
+            {
+                path: '/signin',
+                Component: SignIn,
             },
             {
                 path: 'submit-post',

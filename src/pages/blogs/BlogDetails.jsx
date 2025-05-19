@@ -11,9 +11,9 @@ const BlogDetails = () => {
             <img
                 src={image}
                 alt={title}
-                className="w-full h-64 object-cover rounded-lg mb-6"
+                className="w-full h-100 object-cover rounded-lg mb-6"
             />
-            <h1 className="text-4xl font-bold mb-2 text-neutral">{title}</h1>
+            <h1 className="text-4xl font-bold mb-2 share-tech-font">{title}</h1>
             <p className="text-sm text-gray-500 mb-6">By {author}</p>
             <div className="text-primary">
                 <p>{description}</p><br />

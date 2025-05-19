@@ -1,27 +1,26 @@
-import { Link } from "react-router";
-import { FaBars, FaBookReader } from "react-icons/fa";
+import { Link, NavLink } from "react-router";
+import { FaBars, FaBlog, FaBookReader } from "react-icons/fa";
 import { PiNotePencilFill } from "react-icons/pi";
 
 export default function Navbar() {
     const links =
         <>
-            <Link to="/blogs" className="hover:text-primary flex items-center gap-1"><FaBookReader /> Read</Link>
-            <Link to="/submit-post" className="hover:text-primary flex items-center gap-1"><PiNotePencilFill /> Write</Link>
-            <Link to="/signin" className="hover:text-primary">Signin</Link>
-            <Link to="/get-started">
+            <NavLink to="/blogs" className="hover:text-primary flex items-center gap-1"><FaBookReader /> Read</NavLink>
+            <NavLink to="/submit-post" className="hover:text-primary flex items-center gap-1"><PiNotePencilFill /> Write</NavLink>
+            <NavLink to="/signin" className="hover:text-primary">Signin</NavLink>
+            <NavLink to="/get-started">
                 <button className="btn btn-secondary text-white rounded-full px-4">Get started</button>
-            </Link>
+            </NavLink>
 
         </>
 
 
     return (
-        <div className="navbar shadow-md">
+        <div className="navbar border-b border-secondary">
             <div className="navbar bg-base-100 px-4 w-7xl mx-auto">
                 <div className="flex-1">
                     <div className="flex items-center text-xl font-bold text-neutral">
-                        <Link><img className="w-12" src="/logo.png" alt="" /> </Link>
-                        Tech Blog
+                        <Link className="flex items-center gap-1 share-tech-font text-3xl"><FaBlog size={30} className="text-secondary"/>Tech Blog</Link>
                     </div>
                 </div>
 

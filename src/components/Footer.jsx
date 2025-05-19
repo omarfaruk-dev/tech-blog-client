@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="footer items-center justify-center  p-6 bg-base-100 text-sm text-neutral border-t flex flex-col md:flex-row gap-6">
+        <footer className="footer items-center justify-center  p-6 bg-base-100 text-sm text-neutral border-t border-secondary flex flex-col md:flex-row gap-6">
             <div>
                 © {new Date().getFullYear()} Tech Blog. All rights reserved.
             </div>

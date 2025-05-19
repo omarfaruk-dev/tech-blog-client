@@ -39,7 +39,7 @@ const Blogs = () => {
                             <img src={blog.image} alt={blog.title} className="w-full h-48 object-cover" />
                         </figure>
                         <div className="card-body">
-                            <h3 className="card-title text-xl">{blog.title}</h3>
+                            <h3 className="card-title text-2xl share-tech-font">{blog.title}</h3>
                             <p className="text-sm text-primary">{blog.meta_description}</p>
                             <div className="mt-4 text-sm text-gray-500">By {blog.author}</div>
                             <div className="mt-2">

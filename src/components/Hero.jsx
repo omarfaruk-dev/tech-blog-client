@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function Hero() {
   return (
     <div className="hero min-h-[calc(100vh-149px)] bg-base-100 px-4 lg:px-24 py-12">
@@ -16,9 +18,9 @@ export default function Hero() {
           <p className="py-6 text-lg ">
             A place to read, write, and deepen your understanding.
           </p>
-          <button className="btn btn-neutral rounded-full text-base px-6">
+          <Link to='/blogs' className="btn btn-neutral rounded-full text-base px-6">
             Start reading
-          </button>
+          </Link>
         </div>
       </div>
     </div>
