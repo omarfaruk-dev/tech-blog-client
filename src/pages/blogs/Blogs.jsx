@@ -26,8 +26,6 @@ import { Link } from 'react-router';
 // ];
 
 const Blogs = () => {
-    // const blogsData = useLoaderData();
-    // const { _id } = blogsData;
 
     const [blogs, setBlogs] = useState([]);
     const [search, setSearch] = useState("");
@@ -44,11 +42,11 @@ const Blogs = () => {
             {/* Search Input */}
             <form 
             onChange={(e) => setSearch(e.target.value)}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+            className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-10">
                 <input
                     type="text"
                     placeholder="Search blogs..."
-                    className="input input-bordered w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-secondary"
+                    className="input input-bordered rounded-3xl w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-secondary"
                 />
                 <button 
                 className="btn btn-secondary text-white rounded-3xl w-full sm:w-auto">Search</button>

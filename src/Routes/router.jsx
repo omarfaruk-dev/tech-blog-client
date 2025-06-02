@@ -39,6 +39,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'blog-details/:id',
+                hydrateFallbackElement: <Spinner/>,
                 loader: ({params}) => fetch(`http://localhost:3000/blogs/${params.id}`),
                 element: <BlogDetails/>
             },
