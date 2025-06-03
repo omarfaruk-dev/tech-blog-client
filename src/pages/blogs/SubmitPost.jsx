@@ -1,8 +1,11 @@
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const SubmitPost = () => {
 
-    const handleSubmit = (e)=>{
+    const { user } = useAuth();
+
+    const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
 
@@ -18,25 +21,25 @@ const SubmitPost = () => {
             },
             body: JSON.stringify(newPost)
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.insertedId) {
-                 Swal.fire({
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
                         position: "center",
                         icon: "success",
                         title: "Post Submitted successfully!",
                         showConfirmButton: false,
                         timer: 1500
                     });
-            }
-        })
+                }
+            })
     }
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-12">
             <h2 className="text-3xl font-bold mb-8 text-center">Submit a New Blog Post</h2>
             <form onSubmit={handleSubmit}
-            className="space-y-6">
+                className="space-y-6">
                 {/* Title */}
                 <div>
                     <label className="label">
@@ -49,7 +52,7 @@ const SubmitPost = () => {
                         className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-secondary"
                     />
                 </div>
-                 {/* Meta Description */}
+                {/* Meta Description */}
                 <div>
                     <label className="label">
                         <span className="label-text font-medium">Meta Description <i>(50 to 160 characters only)</i></span>
@@ -74,7 +77,7 @@ const SubmitPost = () => {
                         rows="4"
                     ></textarea>
                 </div>
-                 {/* Image URL */}
+                {/* Image URL */}
                 <div>
                     <label className="label">
                         <span className="label-text font-medium">Thumb Image URL</span>
@@ -94,12 +97,13 @@ const SubmitPost = () => {
                     <input
                         type="text"
                         name="author"
+                        defaultValue={user?.displayName}
                         placeholder="Author name"
                         className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-secondary"
                     />
                 </div>
 
-               
+
 
                 {/* Submit Button */}
                 <button className="btn btn-secondary text-white w-full rounded-full">

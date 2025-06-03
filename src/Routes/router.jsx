@@ -8,6 +8,7 @@ import SubmitPost from "../pages/blogs/SubmitPost";
 import SignIn from "../pages/users/SignIn";
 import SignUp from "../pages/users/SignUp";
 import Spinner from "../components/ui/Spinner";
+import PrivateRoute from "./PrivateRoutes";
 
 
 const router = createBrowserRouter([
@@ -29,19 +30,19 @@ const router = createBrowserRouter([
             },
             {
                 path: 'submit-post',
-                element: <SubmitPost/>
+                element: <PrivateRoute><SubmitPost /></PrivateRoute>
             },
             {
-                path: '/blogs',  
-                hydrateFallbackElement: <Spinner/>,
+                path: '/blogs',
+                hydrateFallbackElement: <Spinner />,
                 // loader: () => fetch('http://localhost:3000/blogs'),
-                element: <Blogs/>         
+                element: <Blogs />
             },
             {
                 path: 'blog-details/:id',
-                hydrateFallbackElement: <Spinner/>,
-                loader: ({params}) => fetch(`http://localhost:3000/blogs/${params.id}`),
-                element: <BlogDetails/>
+                hydrateFallbackElement: <Spinner />,
+                loader: ({ params }) => fetch(`http://localhost:3000/blogs/${params.id}`),
+                element: <BlogDetails />
             },
             {
                 path: '*',

@@ -1,8 +1,11 @@
 import { Link, useNavigate } from "react-router";
 import signUpImg from '../../assets/signup.svg'
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Spinner from "../../components/ui/Spinner";
 
 const SignUp = () => {
 
@@ -77,6 +80,7 @@ const SignUp = () => {
             .then((userCredential) => {
                 const currentUser = userCredential.user;
                 updateUser({ displayName: form.name, photoURL: form.photo })
+                console.log(currentUser)
                     .then(() => {
                         const updatedUser = {
                             ...currentUser,
@@ -105,6 +109,48 @@ const SignUp = () => {
                 setErrors((prev) => ({ ...prev, email: emailErrorMessages[error.code] || 'Register failed!' }));
             });
     };
+
+    //google signin
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(userCredential => {
+                const currentUser = userCredential.user;
+                const userInfo = {
+                    email: currentUser.email,
+                    displayName: currentUser.displayName,
+                    photoURL: currentUser.photoURL,
+                };
+                setUser(userInfo);
+                navigate(`${location.state ? location.state : '/'}`);
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Sign Up Success!",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            })
+            .catch(error => {
+                const message = error.message;
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: message || 'Something went wrong!',
+                });
+            });
+    };
+
+    //if already sing in return to previous page
+    useEffect(() => {
+        if (user) {
+            navigate(location.state ? location.state : '/');
+        }
+    }, [user, navigate]);
+
+    if (user) {
+        return <Spinner />;
+    }
+
     return (
         <div className="min-h-[calc(100vh-149px)] max-w-5xl mx-auto flex flex-col lg:flex-row">
             {/* Left Column Image */}
@@ -132,9 +178,13 @@ const SignUp = () => {
                             <input
                                 type="text"
                                 name="name"
+                                value={form.name}
+                                onChange={handleChange}
+                                onFocus={() => setErrors((prev) => ({ ...prev, name: undefined }))}
                                 placeholder="Your name"
                                 className="input input-bordered w-full rounded-3xl focus:outline-none focus:ring-2 focus:ring-secondary"
                             />
+                            {errors.name && <p className="text-red-600 text-xs mt-1">{errors.name}</p>}
                         </div>
                         {/* Email */}
                         <div>
@@ -144,22 +194,13 @@ const SignUp = () => {
                             <input
                                 type="email"
                                 name="email"
+                                value={form.email}
+                                onChange={handleChange}
+                                onFocus={() => setErrors((prev) => ({ ...prev, email: undefined }))}
                                 placeholder="you@example.com"
                                 className="input input-bordered w-full rounded-3xl focus:outline-none focus:ring-2 focus:ring-secondary"
                             />
-                        </div>
-
-                        {/* Password */}
-                        <div>
-                            <label className="label">
-                                <span className="label-text font-medium">Password</span>
-                            </label>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="Ype Your Password"
-                                className="input input-bordered w-full rounded-3xl focus:outline-none focus:ring-2 focus:ring-secondary"
-                            />
+                            {errors.email && <p className="text-red-600 text-xs mt-1">{errors.email}</p>}
                         </div>
                         {/* photo */}
                         <div>
@@ -167,15 +208,61 @@ const SignUp = () => {
                                 <span className="label-text font-medium">Photo Url</span>
                             </label>
                             <input
-                                type="password"
+                                type="text"
                                 name="photo"
+                                value={form.photo}
+                                onChange={handleChange}
+                                onFocus={() => setErrors((prev) => ({ ...prev, photo: undefined }))}
                                 placeholder="Photo Url"
                                 className="input input-bordered w-full rounded-3xl focus:outline-none focus:ring-2 focus:ring-secondary"
                             />
+                            {errors.photo && <p className="text-red-600 text-xs mt-1">{errors.photo}</p>}
                         </div>
+                        {/* Password */}
+                        <div>
+                            <label className="label">
+                                <span className="label-text font-medium">Password</span>
+                            </label>
+                            <div className="relative">
+                                <input
+                                    name="password"
+                                    value={form.password}
+                                    onFocus={() => { setShowValidation(true); setErrors((prev) => ({ ...prev, password: undefined })); }}
+                                    onChange={handleChange}
+                                    type={showPassword ? 'text' : 'password'}
+                                    className="input input-bordered w-full rounded-3xl focus:outline-none focus:ring-2 focus:ring-secondary"
+                                />
+                                <p
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute inset-y-0 z-10 right-3 flex items-center text-secondary"
+                                >
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </p>
+                            </div>
 
-                        {/* Sign In Button */}
-                        <button className="btn btn-secondary text-white w-full rounded-full mt-4">
+                            {errors.password && <p className="text-red-600 text-xs mt-1">{errors.password}</p>}
+                        </div>
+                        {/* Password Validation */}
+                        {showValidation && (
+                            <ul className="mt-2 text-sm space-y-1">
+                                <li className={validation.length ? "text-green-600" : "text-red-600"}>
+                                    {validation.length ? "✔" : "✘"} at least 6 characters
+                                </li>
+                                <li className={validation.lowerUpper ? "text-green-600" : "text-red-600"}>
+                                    {validation.lowerUpper ? "✔" : "✘"} both lower & upper case
+                                </li>
+                                <li className={validation.numberOrSymbol ? "text-green-600" : "text-red-600"}>
+                                    {validation.numberOrSymbol ? "✔" : "✘"} a number or symbol
+                                </li>
+                                <li className={validation.emailNotIncluded ? "text-green-600" : "text-red-600"}>
+                                    {validation.emailNotIncluded ? "✔" : "✘"} not your email address
+                                </li>
+                            </ul>
+                        )}
+
+                        {/* Sign Up Button */}
+                        <button className="btn btn-secondary text-base-100 w-full rounded-full mt-4">
                             Sign Up
                         </button>
                     </form>
@@ -184,7 +271,9 @@ const SignUp = () => {
                     <div className="divider">OR</div>
 
                     {/* Sign in with Google */}
-                    <button className="btn btn-outline border-secondary w-full rounded-full">
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className="btn btn-outline border-secondary w-full rounded-full">
                         <FcGoogle />
                         Sign in with Google
                     </button>
